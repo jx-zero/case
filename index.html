@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8" />
+	<title>路飞传--精简版</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+	<link rel="stylesheet" href="annimaed.css">
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background: #fff;
+			overflow: hidden;
+			font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+			max-width: 640px;
+		}
+		/*ul wrapper*/
+		#iSlider-wrapper {
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+			position: absolute;
+		}
+
+		#iSlider-wrapper ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			overflow: hidden;
+		}
+		#iSlider-wrapper li {
+			position: absolute;
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-box-pack: center;
+			-webkit-box-align: center;
+			list-style: none;
+		}
+		#iSlider-wrapper li  img{
+			max-width: 100%;
+			max-height: 100%;
+		}
+		.music-btn {
+		  	float: right;
+		  	width: 1.8333333333333rem;
+		  	height: 1.8333333333333rem;
+		  	background: url('imgs/card/music-icon.png');
+		  	background-size: cover;
+		}
+		.music-btn.on {
+		  	-webkit-animation: reverseRotataZ 1.2s linear infinite;
+		}
+		.media-wrap {
+		  	overflow: hidden;
+		  	position: fixed;
+		  	top: 2.9166666666667rem;
+		  	right: 1.375rem;
+		  	z-index: 10000;
+		  	width: 6.5em;
+		  	height: 6.5em;
+		  	font-size: 16px;
+		}
+		.media-wrap span {
+			float: left;
+		  	height: 4em;
+		  	width: 4em;
+		  	line-height: 3rem;
+		  	color: #fff;
+		  	font-size: 1em;
+		}
+		.media-wrap i {
+			width: 2.5em;
+			height: 2.5em;
+		}
+		@-webkit-keyframes reverseRotataZ {
+		  	0% {
+		    	-webkit-transform: rotateZ(0deg);
+		  	}
+		  	100% {
+		    	-webkit-transform: rotateZ(-360deg);
+		  	}
+		}
+		#iSlider-arrow {
+			position: absolute;
+			width: 102px;
+			height: 53px;
+			left: 0;
+			right: 0;
+			bottom: 5%;
+			margin: 0 auto;
+			background: url('imgs/card/arrow.png') no-repeat;
+			background-size: cover;
+			z-index: 10000;
+			opacity: 0.8;
+			-webkit-animation: nextPage 1.2s linear infinite;
+			-webkit-transform: rotate(10deg);
+		}
+		@-webkit-keyframes nextPage {
+		  	0% {
+		    	-webkit-transform: translateY(40px);
+		    	opacity: 0.8;
+		  	}
+		  	50% {
+		  		-webkit-transform: translateY(20px);
+		  		opacity: 0.4;
+		  	}
+		  	100% {
+		    	-webkit-transform: translateY(10px);
+		    	opacity: 0;
+		  	}
+		}
+		div img{
+			width: 100%;
+			height: auto;
+		}		
+		div{
+			width:100%;
+			height: 100%;
+		}
+		div img,div dl,div p,div h2{
+			display: none;
+		}
+		div h2{
+			font-size: 2.5rem;
+			color:#fff;
+		}
+		.bounce div img,.bounce div dl,.bounce h2,.bounce p{
+			display: block;
+		}
+		/* 第一页的动画完成 */
+		.page1{
+			width: 100%;
+			height: 100%;
+			background: url(imgs/lufei/index_bg.jpg) #01619e bottom left no-repeat;
+			background-size: 100% auto;
+			text-align: center;
+		}
+		.page1 img{
+			-webkit-animation-duration:1s;
+			animation-duration:1s;
+			-webkit-animation-fill-mode:both;
+			animation-fill-mode:both;
+			-webkit-backface-visibility:visible!important;
+			-ms-backface-visibility:visible!important;
+			backface-visibility:visible!important;
+			-webkit-animation-name:zoomOut;
+			animation-name:zoomOut;
+		}
+		.bounce .page1 img{
+			width:40%;
+			max-width:220px!important;
+			max-height: 220px!important;
+			height: auto;
+			margin: 50px auto;
+			border-radius: 50%;
+			position: relative;
+			-webkit-animation-duration:2s;
+			animation-duration:2s;
+			-webkit-animation-fill-mode:both;
+			animation-fill-mode:both;
+			-webkit-backface-visibility:visible!important;
+			-ms-backface-visibility:visible!important;
+			backface-visibility:visible!important;
+			-webkit-animation-name:zoomIn;
+			animation-name:zoomIn
+		}		
+		.bounce .page1 h2{
+			margin-top:-20px;
+			-webkit-animation-duration:1s;
+			animation-duration:1s;
+			-webkit-animation-delay:2s;
+			animation-delay:2s;
+			-webkit-animation-fill-mode:both;
+			animation-fill-mode:both;
+			-webkit-backface-visibility:visible!important;
+			-ms-backface-visibility:visible!important;
+			backface-visibility:visible!important;
+			-webkit-animation-name:bounceIn;
+			animation-name:bounceIn;
+		}
+		.bounce .page1 dl dt{
+			line-height: 35px;
+			text-align: center;
+			color:#fff;
+			font-size: 1.5rem;
+			-webkit-backface-visibility:visible!important;
+			-ms-backface-visibility:visible!important;
+			backface-visibility:visible!important;
+			-webkit-animation-duration:1s;
+			animation-duration:1s;
+			-webkit-animation-delay:4s;
+			animation-delay:4s;
+			-webkit-animation-fill-mode:both;
+			animation-fill-mode:both;
+			-webkit-animation-name:bounceInRight;
+			animation-name:bounceInRight;
+		}
+		.bounce .page1 dl dt:nth-child(2){
+			-webkit-animation-delay:5s;
+			animation-delay:5s;
+		}
+		.bounce .page1 dl dt:nth-child(3){
+			-webkit-animation-delay:6s;
+			animation-delay:6s;
+		}
+		.bounce .page1 dl dt:nth-child(4){
+			-webkit-animation-delay:7s;
+			animation-delay:7s;
+		}
+		.bounce .page1 dl dt:nth-child(5){
+			-webkit-animation-delay:8s;
+			animation-delay:8s;
+		}
+		.bounce .page1 dl dt:nth-child(6){
+			-webkit-animation-delay:9s;
+			animation-delay:9s;
+		}
+		.bounce p{
+			-webkit-animation-duration:2s;
+			animation-duration:2s;
+			-webkit-animation-delay:4s;
+			animation-delay:4s;
+			-webkit-animation-fill-mode:both;
+			animation-fill-mode:both;
+			-webkit-backface-visibility:visible!important;
+			-ms-backface-visibility:visible!important;
+			backface-visibility:visible!important;
+			-webkit-animation-name:bounceIn;
+			animation-name:bounceIn;
+		}
+		.bounce h2{
+			-webkit-animation-duration:1s;
+			animation-duration:1s;
+			-webkit-animation-delay:2s;
+			animation-delay:2s;
+			-webkit-animation-fill-mode:both;
+			animation-fill-mode:both;
+			-webkit-backface-visibility:visible!important;
+			-ms-backface-visibility:visible!important;
+			backface-visibility:visible!important;
+			-webkit-animation-name:fadeIn;
+			animation-name:fadeIn;
+		}
+		#iSlider-wrapper div{
+			background-image: -webkit-linear-gradient(top,#01619e,#fff);
+			padding-top:10px;
+			box-sizing: border-box;
+			text-align: center;
+		}
+		.page2 img{
+			max-width:300px!important; 
+			width: 60%;
+			margin:10px auto 0;
+			height: auto;
+		}
+		.bounce img{
+			-webkit-animation-duration:1s;
+			animation-duration:1s;
+			-webkit-animation-delay:0s;
+			animation-delay:0s;
+			-webkit-animation-fill-mode:both;
+			animation-fill-mode:both;
+			-webkit-backface-visibility:visible!important;
+			-ms-backface-visibility:visible!important;
+			backface-visibility:visible!important;
+			-webkit-animation-name:fadeInUpBig;
+			animation-name:fadeInUpBig;
+		}
+		div p{
+			width: 80%;
+			margin: auto;
+			font-size: 1.2rem;
+			text-indent: 2em;
+			text-align: left;
+			line-height: 30px;
+			margin-top: -10px;
+			color:#eee;			
+		}
+		.page3 p{
+			margin-top: 5px;
+		}
+	</style>
+	
+</head>
+
+<body>
+	<!-- Outer Canvas 外层画布 -->
+	<div id="iSlider-wrapper"></div>
+	<aside class="media-wrap">
+		<span id="musicBtnTxt" style="display: none;">关闭</span>
+		<i id="musicBtn" class="music-btn on"></i>
+	</aside>
+	<audio src="imgs/card/lufei.mp3" autoplay="autoplay" loop="loop" id="autoplay"></audio>
+	<div id="iSlider-arrow"></div>
+	<script src="js/islider.js"></script>
+
+	<script>
+		var data = [
+		{
+		    'content' : '<div class="page1"><img src="imgs/lufei/logopic.jpg" alt="" /><h2>蒙其·D·路飞</h2><dl><dt>性别：男</dt><dt>血型：F型</dt><dt>职业：草帽海贼团船长</dt><dt>身高：172cm-174cm</dt><dt>生日：5月5日（日本男孩节）</dt><dt>故乡：东海-哥雅王国-风车村</dt></dl></div>'
+		},
+		{
+		    'content' : '<div class="page2"><h2>创作来源</h2><p>路飞(Luffy)这名字源自英语“luff”，意即“迎风航行”，这是他想过最适合船长使用的名字。他也指出路飞生下来就是运势非凡的人；只有实力和运气兼备的人，才能成就伟大功业</p><img src="imgs/lufei/9.png" alt="" /></div>'
+		},
+		{
+		    'content' : '<div class="page3"><h2>爱憎分明且直率</h2><p>从不会隐藏自己的想法，一旦遇到性情较敏感的对象就会感到头疼，会直言讨厌，也非常排斥气量狭小的对象。</p><p>在轻视自己的国民的生命的迷倒众生的汉库克面前，愤怒地说”你真的很讨厌。</p><img src="imgs/lufei/5.png" alt="" /><//div>'
+		}];
+		
+		var	islider = new iSlider({
+			type: 'dom',
+		    data: data,
+		    dom: document.getElementById("iSlider-wrapper"),
+		    isVertical: true,
+		    isLooping: false,
+		    animateType: 'card',
+		    onslidechange: function(idx) {
+
+		    	if (this.isLooping === false) {
+			    	if (idx === this.data.length - 1) {
+			    		document.getElementById('iSlider-arrow').style.display = 'none';
+			    	}
+			    	else {
+			    		document.getElementById('iSlider-arrow').style.display = 'block';
+			    	}
+			    }
+		    }
+		});
+
+		var audio = document.getElementById('autoplay');
+		var controller = document.getElementById('musicBtn');
+		var controllerHint = document.getElementById('musicBtnTxt');
+
+		document.getElementById('musicBtn').addEventListener('touchstart', function() {
+
+			controllerHint.style.display = '';
+			if (audio.paused) {
+				audio.play();
+				controller.className = 'music-btn on';
+				controllerHint.innerHTML = '开始';
+			} else {
+				audio.pause();
+				controller.className = 'music-btn';
+				controllerHint.innerHTML = '关闭';
+			}
+
+			setTimeout(function() {
+				controllerHint.style.display = 'none';
+			}, 1000);
+
+		}, false);
+
+	</script>
+</body>
+</html>
